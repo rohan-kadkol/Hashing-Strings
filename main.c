@@ -39,7 +39,6 @@ void readFile(char* fileName) {
         } else {
             if (wordLength) {
                 word[wordLength] = '\0';
-                printf("!@#!@#!@#!@#\n");
                 addToHashTable(word);
                 wordLength = 0;
             }
@@ -47,7 +46,6 @@ void readFile(char* fileName) {
     }
     if (wordLength) {
         word[wordLength] = '\0';
-        printf("##############\n");
         addToHashTable(word);
         wordLength = 0;
     }
@@ -56,32 +54,14 @@ void readFile(char* fileName) {
 }
 
 void addToHashTable(char* word) {
-    printf("START\n");
-    printf("%s\n", word);
-    if (hashTable[132]) {
-        printf("hashTable[132] = %s\n", hashTable[132]->word);
-    }
-    if (hashTable[59]) {
-        printf("hashTable[59] = %s\n", hashTable[59]->word);
-    }
-    if (hashTable[85]) {
-        printf("hashTable[85] = %s\n", hashTable[85]->word);
-    }
-    printf("END\n");
-
     int address = hashFunction(word);
-    // printf("%s hashes to %d\n", word, address);
     Node* node = searchChain(hashTable, address, word);
-    // printf("%u", node);
 
     if (node == NULL) {
-        // printf("HERE %s\n", word);
         Node* node = create_node(word, MAX_WORD_LENGTH);
         Node* oldNode = hashTable[address];
         node->node = oldNode;
         hashTable[address] = node;
-        // printf("HERE %s\n", node->word);
-        // printf("HERE %s\n", hashTable[address]->word);
     } else {
         node->frequency++;
     }
@@ -98,7 +78,6 @@ Node* searchChain(Node* hashTable[], int address, char* word) {
         }
         return NULL;
     }
-    printf("*****************\n");
     return NULL;
 }
 
@@ -121,5 +100,4 @@ void printHashTable(Node* hashTable[]) {
             fflush(stdout);
         }
     }
-    // printf("HHHUH: %s\n", hashTable[132]->word);
 }
