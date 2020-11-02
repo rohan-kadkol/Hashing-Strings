@@ -1,4 +1,4 @@
-# Hasing String
+# Hasing Strings
 
 All SI session info on [csc3102si.rohankadkol.com](https://csc3102si.rohankadkol.com)
 
