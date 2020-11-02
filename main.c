@@ -14,6 +14,7 @@ void readFile(char*);
 void addToHashTable(char* word);
 Node* searchChain(Node** hashTable, int address, char* word);
 void printHashTable(Node* hashTable[]);
+void printChain(Node* node);
 
 int main() {
     memset(hashTable, '\0', TABLE_SIZE * sizeof(Node*));
@@ -94,10 +95,17 @@ int hashFunction(char* string) {
 void printHashTable(Node* hashTable[]) {
     for (int i = 0; i < TABLE_SIZE; i++) {
         if (hashTable[i] != NULL) {
-            printf("i = %d ", i);
-            printf("Word: %s, Frequency: %d\n", hashTable[i]->word,
-                   hashTable[i]->frequency);
-            fflush(stdout);
+            printf("**\nhashAddress = %d\n", i);
+            printChain(hashTable[i]);
         }
+    }
+}
+
+void printChain(Node* node) {
+    Node* n = node;
+    while (n != NULL) {
+        printf("Word: %s, Frequency: %d\n", n->word, n->frequency);
+        fflush(stdout);
+        n = n->node;
     }
 }
